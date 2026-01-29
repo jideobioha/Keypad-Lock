@@ -113,7 +113,7 @@ See the full [project report](docs/Final_Project_Report.pdf) for detailed design
 
 **Jidechukwu Obioha**  
 Binghamton University | EECE 458  
-December 2024
+December 2025
 
 ## License
 
