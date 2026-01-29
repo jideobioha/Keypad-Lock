@@ -1,0 +1,25 @@
+#include "usbcdc.h"
+int main()
+{
+	char c;
+	char prompt[]="Program will echo back each typed key\n\n\r";
+
+	__asm__ volatile ("cpsid i");
+	configure_usbcdc();
+	__asm__ volatile ("cpsie i");
+
+	while(!usbcdc_getchar(&c) ) // guarantees we will print prompt to minicom because you have to anything that is printed before 
+								// minicom opens will be lost. so this ensure we open minicom (and explicitly press a key) before
+								// the rest of the program executes
+		continue;
+
+	for( char *p=prompt; *p != 0; p++ )
+		usbcdc_putchar(*p);
+
+
+	while(1){
+		if( usbcdc_getchar(&c)){
+			usbcdc_putchar(c);
+		}
+	}
+}

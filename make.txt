@@ -1,0 +1,42 @@
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/systick.c -o systick.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/keypad.c -o keypad.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/servo.c -o servo.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/led.c -o led.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/passive_buzzer.c -o passive_buzzer.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/watchdog.c -o watchdog.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/timer0.c -o timer0.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c drivers/usbcdc.c -o usbcdc.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c baremetal/_crt0.c -o _crt0.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c baremetal/_flash_init.c -o _flash_init.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -c baremetal/_newlib_stubs.c -o _newlib_stubs.o
+arm-none-eabi-gcc -ffreestanding -march=armv8-m.main+fp+dsp -mfloat-abi=hard -mthumb -std=c11 -pedantic -Wno-attributes -Os  -Idrivers -Ibaremetal/include -Ilib -Iinclude -fdata-sections -ffunction-sections -Xlinker -gc-sections -Wall -nostartfiles -specs=nano.specs -T baremetal/_flash.ld  -o keypad_servo_lock.elf src/keypad_servo_lock.c systick.o keypad.o servo.o led.o passive_buzzer.o watchdog.o timer0.o usbcdc.o _crt0.o _flash_init.o _newlib_stubs.o
+
+Generated Program has the following segments: n
+
+section   size  addr
+.boot     296   0x10000000
+TEXT      3126  0x10000128
+BSS       68    0x20000000
+.comment  34    0x00000000
+tools/elf2uf2.py -v keypad_servo_lock.elf
+keypad_servo_lock.elf is valid 32b ARM little-endian ELF file
+ELF contains loadable flash segment at 0x10000000
+Skipping program header for non-loadable segment
+Flash only binary; UF2 will program flash.
+Processing 3422 byte segment at physical address 10000000
+Writing output to keypad_servo_lock.uf2
+Writing UF2 record of 256B @ addr 0x10000000
+Writing UF2 record of 256B @ addr 0x10000100
+Writing UF2 record of 256B @ addr 0x10000200
+Writing UF2 record of 256B @ addr 0x10000300
+Writing UF2 record of 256B @ addr 0x10000400
+Writing UF2 record of 256B @ addr 0x10000500
+Writing UF2 record of 256B @ addr 0x10000600
+Writing UF2 record of 256B @ addr 0x10000700
+Writing UF2 record of 256B @ addr 0x10000800
+Writing UF2 record of 256B @ addr 0x10000900
+Writing UF2 record of 256B @ addr 0x10000a00
+Writing UF2 record of 256B @ addr 0x10000b00
+Writing UF2 record of 256B @ addr 0x10000c00
+Writing UF2 record of 256B @ addr 0x10000d00
+rm _crt0.o _newlib_stubs.o servo.o usbcdc.o watchdog.o keypad.o timer0.o _flash_init.o led.o systick.o keypad_servo_lock.elf passive_buzzer.o
