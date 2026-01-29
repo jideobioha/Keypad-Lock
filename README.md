@@ -111,6 +111,3 @@ The keypad buffer is shared between SysTick ISR and main application. `__disable
 Binghamton University | EECE 458  
 December 2025
 
-## License
-
-See `LICENSE.txt`
