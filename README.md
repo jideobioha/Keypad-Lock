@@ -105,9 +105,9 @@ The keypad buffer is shared between SysTick ISR and main application. `__disable
 └── Makefile
 ```
 
-## Documentation
+//## Documentation
 
-See the full [project report](docs/Final_Project_Report.pdf) for detailed design analysis, driver implementations, and system diagrams.
+//See the full [project report](docs/Final_Project_Report.pdf) for detailed design analysis, driver implementations, and system diagrams.
 
 ## Author
 
